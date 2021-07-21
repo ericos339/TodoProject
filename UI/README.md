@@ -1,5 +1,4 @@
-# TodoProject
-React UI with Azure Functions on TypeScript
+# Тестовая работа
 
 ## [GH-PAGES](https://droni90.github.io/todo-redux-ts/)
 

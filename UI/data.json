@@ -1,0 +1,25 @@
+{
+  "groups": [
+    {
+      "groupName": "Дела по дому",
+      "id": 1,
+      "todos": [
+        {
+          "todoName": "Убраться в комнате",
+          "id": 1,
+          "completed": false
+        },
+        {
+          "todoName": "Помыть посуду",
+          "id": 2,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "groupName": "12345",
+      "id": 1624029551337,
+      "todos": []
+    }
+  ]
+}
