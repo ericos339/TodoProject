@@ -1,18 +1,17 @@
 import {Entity, ObjectIdColumn, ObjectID, Column} from "typeorm";
 
-@Entity()
-export class User {
+@Entity('group')
+export class TodoGroupEty {
 
     @ObjectIdColumn()
     id: ObjectID;
 
     @Column()
-    firstName: string;
+    groupName: string;
 
     @Column()
-    lastName: string;
+    color: string;
 
     @Column()
-    age: number;
-
+    isDeleted: boolean;
 }

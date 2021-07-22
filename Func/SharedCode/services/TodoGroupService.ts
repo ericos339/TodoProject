@@ -1,25 +1,25 @@
 import { InsertOneWriteOpResult } from "typeorm";
+import { TodoGroupModel } from "../models/TodoGroupModel";
 import { createMongoConnection } from "../mongodb";
-import { Group } from "../mongodb/entities/Group";
+import { TodoGroupEty } from "../mongodb/entities/TodoGroupEty";
+
+import * as mapper from "../mappers/TodoGroupMapper";
 
 export class TodoGroupService {
 
   constructor() {
   }
 
-  public async addProduct(): Promise<InsertOneWriteOpResult> {
+  public async addTodoGroup(group:TodoGroupModel): Promise<InsertOneWriteOpResult> {
   
-    const ety = new Group();
-    
+    const ety = new TodoGroupEty();
+
+    let todoGroupEty = mapper.mapToEntity(group, ety);
   
     const connection = await createMongoConnection();
-    const repository = connection.getMongoRepository(Group);
+    const repository = connection.getMongoRepository(TodoGroupEty);
 
-    ety.color = "Black";
-    ety.groupName = "First";
-    ety.isDeleted = false;
-    
-    const res = await repository.insertOne(ety);
+    const res = await repository.insertOne(todoGroupEty);
   
     return res;
   }
