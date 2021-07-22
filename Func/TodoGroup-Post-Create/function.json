@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../build/TodoGroup-Get/index.js"
+  "scriptFile": "../build/TodoGroup-Post-Create/index.js"
 }
