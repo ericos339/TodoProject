@@ -1,4 +1,4 @@
-import { InsertOneWriteOpResult, ObjectID } from "typeorm";
+import { InsertOneWriteOpResult } from "typeorm";
 import { TodoGroupModel } from "../models/TodoGroupModel";
 import { createMongoConnection } from "../mongodb";
 import { TodoGroupEty } from "../mongodb/entities/TodoGroupEty";
@@ -29,7 +29,6 @@ export class TodoGroupService {
     
     const connection = await createMongoConnection();
     const repository = connection.getMongoRepository(TodoGroupEty);
-    const ety = await repository.findOne({ where: { _id: new ObjectId("60f971f0780b66cc77eba542") } });
     const aggregate: Array<TodoGroupModel> = [];
     const res = await repository.aggregate(aggregate).toArray();
     
@@ -42,7 +41,7 @@ export class TodoGroupService {
     const connection = await createMongoConnection();
     const repository = connection.getMongoRepository(TodoGroupEty);
     try {
-      const ety = await repository.findOne({ where: { _id: new ObjectId(id) } });
+      const ety = await repository.findOne({ where: { _id: new ObjectId(id) }});
       ety.isDeleted = true;
       await repository.save(ety);
     } catch (error) {
