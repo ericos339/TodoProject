@@ -1,4 +1,3 @@
-import { InsertOneWriteOpResult } from "typeorm";
 import { TodoGroupModel } from "../models/TodoGroupModel";
 import { createMongoConnection } from "../mongodb";
 import { TodoGroupEty } from "../mongodb/entities/TodoGroupEty";
