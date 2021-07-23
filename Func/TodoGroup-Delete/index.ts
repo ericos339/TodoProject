@@ -4,15 +4,16 @@ import { TodoGroupService } from "../SharedCode/services/TodoGroupService";
 
 
     const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-        try{
-            const productService = new TodoGroupService();
-            const groups = await productService.getTodoGroups()
+      const id = req.query.id;  
+      
+      try{
+            const todoGroupService = new TodoGroupService();
+            await todoGroupService.deleteTodoGroup(id);
             context.res = {
                 headers: {
                   "Content-Type": "application/json",
                 },
                 status: 200,
-                body: groups,
               };
         }
         catch (error) {

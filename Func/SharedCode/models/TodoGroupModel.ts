@@ -1,5 +1,5 @@
 export interface TodoGroupModel {
-  id: number;
+  _id: string;
   groupName: string;
   totalCount: number;
   completedCount: number;

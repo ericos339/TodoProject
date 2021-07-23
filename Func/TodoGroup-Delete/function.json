@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
+        "delete"
       ]
     },
     {
@@ -15,5 +15,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../build/TodoGroup-Get/index.js"
+  "scriptFile": "../build/TodoGroup-Delete/index.js"
 }
