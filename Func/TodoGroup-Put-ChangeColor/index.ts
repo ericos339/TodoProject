@@ -1,18 +1,20 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { ChangeColorRequest } from "../SharedCode/models/ChangeColorRequest";
 import { TodoGroupService } from "../SharedCode/services/TodoGroupService";
 
 
     const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-      const id = req.query.id;  
+      const changeColorRequest: ChangeColorRequest = req.body;  
       
       try{
             const todoGroupService = new TodoGroupService();
-            await todoGroupService.changeColorTodoGroup(id, req.body.color);
+            const group = await todoGroupService.changeColorTodoGroup(changeColorRequest.groupId, changeColorRequest.color);
             context.res = {
                 headers: {
                   "Content-Type": "application/json",
                 },
                 status: 200,
+                body: group
               };
         }
         catch (error) {

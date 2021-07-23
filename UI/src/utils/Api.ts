@@ -6,7 +6,7 @@ export const getGroups = () => {
   return axios.get(`${URL_API}/TodoGroup-Get`);
 };
 export const postGroups = (group: IGroupModel) => {
-  return axios.post(`${URL_API}/TodoGroup`, group);
+  return axios.post(`${URL_API}/TodoGroup-Post-Create`, group);
 };
 
 export const removeGroup = (id: any) => {
@@ -14,7 +14,7 @@ export const removeGroup = (id: any) => {
 };
 
 export const putGroupColor = (groupId: number, color: string) => {
-  return axios.put(`${URL_API}/TodoGroup-Put-ChangeColor/${groupId}`, { groupId, color });
+  return axios.put(`${URL_API}/TodoGroup-Put-ChangeColor`, { groupId, color });
 };
 
 export const getTodos = (id: number) => {
