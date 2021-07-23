@@ -7,7 +7,7 @@ import { TodoGroupService } from "../SharedCode/services/TodoGroupService";
       
       try{
             const todoGroupService = new TodoGroupService();
-            await todoGroupService.deleteTodoGroup(id);
+            await todoGroupService.changeColorTodoGroup(id, req.body.color);
             context.res = {
                 headers: {
                   "Content-Type": "application/json",

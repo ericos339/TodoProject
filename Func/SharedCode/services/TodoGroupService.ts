@@ -49,5 +49,19 @@ export class TodoGroupService {
       throw error;
     }
   }
+
+  public async changeColorTodoGroup(id: string, color: string): Promise<void> {
+    
+    const connection = await createMongoConnection();
+    const repository = connection.getMongoRepository(TodoGroupEty);
+    try {
+      const ety = await repository.findOne({ where: { _id: new ObjectId(id) }});
+      ety.color = color;
+      await repository.save(ety);
+    } catch (error) {
+      console.error("TodoGroupService.ChangeColorTodoGroup error", error);
+      throw error;
+    }
+  }
 }
 
