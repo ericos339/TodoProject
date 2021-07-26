@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "post"
+        "get"
       ]
     },
     {
@@ -15,5 +15,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../build/TodoItem-Post-Create/index.js"
+  "scriptFile": "../build/TodoItem-Get/index.js"
 }

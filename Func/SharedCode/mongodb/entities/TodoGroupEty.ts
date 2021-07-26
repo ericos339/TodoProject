@@ -1,8 +1,7 @@
 import {Entity, ObjectIdColumn, Column} from "typeorm";
 import {ObjectId } from 'mongodb';
-import { TodoItemEty } from "./TodoItemEty";
 
-@Entity('group')
+@Entity('todoGroups')
 export class TodoGroupEty {
 
     @ObjectIdColumn({ name: "_id" })
@@ -16,7 +15,4 @@ export class TodoGroupEty {
 
     @Column()
     isDeleted: boolean;
-
-    @Column()
-    todoItems: TodoItemEty[];
 }

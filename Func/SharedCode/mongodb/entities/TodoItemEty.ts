@@ -1,15 +1,18 @@
-import {Entity, ObjectIdColumn, Column} from "typeorm";
+import {Entity, ObjectIdColumn, Column } from "typeorm";
 import {ObjectId } from 'mongodb';
 
-@Entity('todoItem')
+@Entity('todoItems')
 export class TodoItemEty {
 
     @ObjectIdColumn({ name: "_id" })
-    _id?: ObjectId;
+    _id: ObjectId;
 
     @Column()
     todoName: string;
 
     @Column()
     isCompleted: boolean;
+
+    @Column()
+    groupId: string;
 }

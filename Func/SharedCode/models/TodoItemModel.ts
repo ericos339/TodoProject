@@ -1,6 +1,6 @@
 export interface TodoItemModel {
   id: string;
-  groupId?: string;
+  groupId: string;
   isCompleted: boolean;
   todoName: string;
 }

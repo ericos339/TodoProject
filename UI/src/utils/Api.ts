@@ -18,7 +18,7 @@ export const putGroupColor = (groupId: number, color: string) => {
 };
 
 export const getTodos = (id: number) => {
-  return axios.get(`${URL_API}/TodoGroup/${id}/TodoItems`);
+  return axios.get(`${URL_API}/TodoGroup/?id=${id}`);
 };
 
 export const postTodo = (todos: ITodoModel, id: number) => {
