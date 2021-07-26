@@ -1,6 +1,6 @@
 export interface IGroupModel {
   groupName: string;
-  id: number;
+  id: string;
   todoItems?: ITodoModel[];
   totalCount: number;
   completedCount: number;
@@ -13,7 +13,7 @@ export interface IGroupCreateModel {
 
 export interface ITodoModel {
   todoName: string;
-  id: number;
+  id: string;
   isCompleted: boolean;
 }
 
@@ -30,5 +30,5 @@ export interface IGroupsState {
 
 export interface IModal {
   isOpen: boolean;
-  groupId: number;
+  groupId: string;
 }

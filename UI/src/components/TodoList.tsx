@@ -14,15 +14,14 @@ interface ITodo {
 }
 
 const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
-  const groupId = +id;
   const { todoGroups } = useTypeSelector((state) => state.groupsList);
-  const todoItems = todoGroups.find((item) => item.id === groupId)?.todoItems;
+  const todoItems = todoGroups.find((item) => item.id === id)?.todoItems;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!todoItems) {
-      dispatch(loadTodos(groupId));
+      dispatch(loadTodos(id));
     }
   }, [todoGroups]);
 
@@ -37,7 +36,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
                 id={id}
                 completed={isCompleted}
                 key={id}
-                groupId={groupId}
+                groupId={id}
               />
             );
           }
@@ -47,7 +46,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
                 todoName={todoName}
                 id={id}
                 completed={isCompleted}
-                groupId={groupId}
+                groupId={id}
                 key={id}
               />
             );
@@ -56,7 +55,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
             return (
               <TodoItem
                 todoName={todoName}
-                groupId={groupId}
+                groupId={id}
                 id={id}
                 completed={isCompleted}
                 key={id}

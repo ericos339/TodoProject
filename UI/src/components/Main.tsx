@@ -50,9 +50,9 @@ const useStyles = makeStyles({
 });
 
 interface IMain {
-  handleGroupClick: (id: number) => void;
-  handleRemoveGroup: (evt: React.SyntheticEvent, id: number) => void;
-  handleOpenColorModal: (evt: React.SyntheticEvent, groupId: number) => void;
+  handleGroupClick: (id: string) => void;
+  handleRemoveGroup: (evt: React.SyntheticEvent, id: string) => void;
+  handleOpenColorModal: (evt: React.SyntheticEvent, groupId: string) => void;
 }
 
 const Main: React.FC<IMain> = ({

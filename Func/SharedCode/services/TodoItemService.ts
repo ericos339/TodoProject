@@ -9,11 +9,12 @@ export class TodoItemService {
   constructor() {
   }
 
-  public async addTodoItem(itemModel:TodoItemModel): Promise<TodoItemModel> {
+  public async addTodoItem(itemModel:TodoItemModel, groupId: string): Promise<TodoItemModel> {
 
     const ety = new TodoItemEty();
 
     const todoItemEty = mapper.mapToEntity(itemModel, ety);
+    todoItemEty.groupId = groupId
   
     const connection = await createMongoConnection();
     const itemRepository = connection.getMongoRepository(TodoItemEty);

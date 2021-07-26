@@ -19,18 +19,18 @@ const useStyles = makeStyles({
 
 interface ITodo {
   todoName: string;
-  id: number;
+  id: string;
   completed: boolean | undefined;
-  groupId: number;
+  groupId: string;
 }
 const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const handleRemoveButton = (todoId: number) => {
+  const handleRemoveButton = (todoId: string) => {
     dispatch(removeTodo({ groupId, todoId }));
   };
 
-  const handleCompleteButton = (todoId: number) => {
+  const handleCompleteButton = (todoId: string) => {
     dispatch(completeTodo(todoId));
   };
   return (

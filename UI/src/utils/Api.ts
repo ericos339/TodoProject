@@ -13,22 +13,22 @@ export const removeGroup = (id: any) => {
   return axios.delete(`${URL_API}/TodoGroup-Delete/?id=${id.id}`);
 };
 
-export const putGroupColor = (groupId: number, color: string) => {
+export const putGroupColor = (groupId: string, color: string) => {
   return axios.put(`${URL_API}/TodoGroup-Put-ChangeColor`, { groupId, color });
 };
 
-export const getTodos = (id: number) => {
-  return axios.get(`${URL_API}/TodoGroup/?id=${id}`);
+export const getTodos = (id: string) => {
+  return axios.get(`${URL_API}/TodoItem-Get/?id=${id}`);
 };
 
-export const postTodo = (todos: ITodoModel, id: number) => {
-  return axios.post(`${URL_API}/TodoGroup/${id}/TodoItems`, todos);
+export const postTodo = (todos: ITodoModel, id: string) => {
+  return axios.post(`${URL_API}/TodoItem-Post-Create/?id=${id}`, todos);
 };
 
-export const removeTodo = (todoId: number) => {
+export const removeTodo = (todoId: string) => {
   return axios.delete(`${URL_API}/TodoItem/${todoId}`);
 };
 
-export const completeTodo = (todoId: number) => {
+export const completeTodo = (todoId: string) => {
   return axios.put(`${URL_API}/TodoItem/${todoId}`);
 };

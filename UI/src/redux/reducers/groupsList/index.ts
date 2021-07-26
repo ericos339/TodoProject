@@ -56,7 +56,7 @@ export const groupsList = (
 
     case getType(todoActions.addTodoSuccess):
       newGroups = state.todoGroups.map((item) => {
-        if (item.id === +action.payload.id) {
+        if (item.id === action.payload.id) {
           item.todoItems?.push(action.payload.model);
           item.totalCount += 1;
         }
@@ -67,7 +67,7 @@ export const groupsList = (
     case getType(todoActions.removeTodoSuccess):
       console.log(action);
       newGroups = [...state.todoGroups].map((item) => {
-        if (item.id === +action.payload.groupId) {
+        if (item.id === action.payload.groupId) {
           console.log("xxx");
           item.totalCount -= 1;
           item.todoItems?.forEach((todo) => {

@@ -20,55 +20,55 @@ export const addGroupSuccess = createAction(
   "todoGroup/ADD_GROUP_SUCCESS"
 )<IGroupModel>();
 
-export const removeGroup = createAction("todoGroup/REMOVE_GROUP")<number>();
+export const removeGroup = createAction("todoGroup/REMOVE_GROUP")<string>();
 
 export const removeGroupSuccess = createAction(
   "todoGroup/REMOVE_GROUP_SUCCESS"
-)<number>();
+)<string>();
 
 export const loadTodosSuccess = createAction("todoGroup/LOAD_TODOS_SUCCESS")<{
   model: ITodoModel[];
-  id: number;
+  id: string;
 }>();
 
-export const loadTodos = createAction("todoGroup/LOAD_TODOS")<number>();
+export const loadTodos = createAction("todoGroup/LOAD_TODOS")<string>();
 
 export const addTodo = createAction("todoGroup/ADD_TODO")<{
   model: ITodoCreateModel;
-  id: number;
+  id: string;
 }>();
 
 export const addTodoSuccess = createAction("todoGroup/ADD_TODO_SUCCESS")<{
   model: ITodoModel;
-  id: number;
+  id: string;
 }>();
 
 export const removeTodo = createAction("todoGroup/REMOVE_TODO")<{
-  groupId: number;
-  todoId: number;
+  groupId: string;
+  todoId: string;
 }>();
 
 export const removeTodoSuccess = createAction("todoGroup/REMOVE_TODO_SUCCESS")<{
-  groupId: number;
-  todoId: number;
+  groupId: string;
+  todoId: string;
 }>();
 
 export const putGroupColor = createAction("todoGroup/PUT_GROUP_COLOR")<{
-  groupId: number;
+  groupId: string;
   color: string;
 }>();
 export const putGroupColorSuccess = createAction(
   "todoGroup/PUT_GROUP_COLOR_SUCCESS"
 )<{
-  groupId: number;
+  groupId: string;
   color: string;
 }>();
 
-export const completeTodo = createAction("todoGroup/COMPLETE_TODO")<number>();
+export const completeTodo = createAction("todoGroup/COMPLETE_TODO")<string>();
 
 export const completeTodoSuccess = createAction(
   "todoGroup/COMPLETE_TODO_SUCCESS"
-)<number>();
+)<string>();
 
 export const spinnerStart = createAction("spinner/SPINNER_START")();
 

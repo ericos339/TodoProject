@@ -66,7 +66,7 @@ const TodoPage: React.FC = () => {
         isCompleted: false,
       };
 
-      dispatch(addTodo({ model: newGroup, id: +id }));
+      dispatch(addTodo({ model: newGroup, id }));
       setInputTodo("");
     }
   };

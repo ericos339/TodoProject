@@ -5,7 +5,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     context.log('HTTP trigger function processed a request.');
     try{
         const productService = new TodoItemService();
-        const items = await productService.getTodoItems(req.body.groupId)
+        const groupId = req.query.id
+        const items = await productService.getTodoItems(groupId)
         context.res = {
             headers: {
               "Content-Type": "application/json",
