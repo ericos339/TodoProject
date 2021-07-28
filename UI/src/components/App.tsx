@@ -10,6 +10,7 @@ import {
   loadTodos,
   removeGroup,
   putGroupColor,
+  loadPriorities,
 } from "../redux/actions/group";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import ErrorHandler from "./errorHandler/ErrorHandler";
@@ -75,6 +76,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(loadGroups());
+    dispatch(loadPriorities())
   }, []);
 
   return (

@@ -70,6 +70,25 @@ export const completeTodoSuccess = createAction(
   "todoGroup/COMPLETE_TODO_SUCCESS"
 )<string>();
 
+export const loadPriorities = createAction(
+  "todoGroup/LOAD_PRIORITIES"
+)();
+export const loadPrioritiesSuccess = createAction(
+  "todoGroup/LOAD_PRIORITIES_SUCCESS"
+)<string[]>();
+
+export const changePriorityTodo = createAction("todoGroup/CHANGE_PRIORITY_TODO")<{
+  todoId: string;
+  priority: string;
+}>();
+
+export const changePriorityTodoSuccess = createAction(
+  "todoGroup/CHANGE_PRIORITY_TODO_SUCCESS"
+)<{
+  todoId: string;
+  priority: string;
+}>();
+
 export const spinnerStart = createAction("spinner/SPINNER_START")();
 
 export const spinnerStop = createAction("spinner/SPINNER_STOP")();

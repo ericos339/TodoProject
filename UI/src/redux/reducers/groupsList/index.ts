@@ -97,6 +97,24 @@ export const groupsList = (
       });
       return { ...state, todoGroups: newGroups, error: "" };
 
+      case getType(todoActions.changePriorityTodoSuccess):
+      newGroups = [...state.todoGroups].map((item) => {
+        item.todoItems?.forEach((todo: ITodoModel) => {
+          if (todo.id === action.payload.todoId) {
+            todo.priority = action.payload.priority;
+          }
+        });
+        return item;
+      });
+      return { ...state, todoGroups: newGroups, error: "" };
+
+      case getType(todoActions.loadPrioritiesSuccess):
+        return {
+          ...state,
+          priorities: action.payload,
+          error: "",
+        };
+
     case getType(todoActions.spinnerStart):
       return { ...state, isLoading: true };
 

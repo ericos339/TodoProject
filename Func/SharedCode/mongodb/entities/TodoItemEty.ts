@@ -15,4 +15,7 @@ export class TodoItemEty {
 
     @Column()
     groupId: string;
+
+    @Column()
+    priority: string;
 }

@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 import * as mapper from "../mappers/TodoItemMapper";
 import { TodoItemEty } from "../mongodb/entities";
 import { TodoItemModel } from "../models/TodoItemModel";
+import { PriorityEnm } from "../models/Enums/PriorityEnm";
 
 export class TodoItemService {
 
@@ -57,5 +58,27 @@ export class TodoItemService {
       throw error;
     }
   }
+
+  public getPriorities() {
+    return Object.values(PriorityEnm)
+      .filter(item => typeof item !== 'number')
+  }
+
+  public async changePriorityStatus(id: string, priority: string): Promise<TodoItemModel> {
+    
+    const connection = await createMongoConnection();
+    const repository = connection.getMongoRepository(TodoItemEty);
+    try {
+      const ety = await repository.findOne({ where: { _id: new ObjectId(id) }});
+      ety.priority = priority
+      await repository.save(ety);
+      return mapper.mapToModel(ety);
+    } catch (error) {
+      console.error("TodoGroupService.ChangeColorTodoGroup error", error);
+      throw error;
+    }
+  }
 }
+
+  
 

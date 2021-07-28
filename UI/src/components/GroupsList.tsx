@@ -1,11 +1,14 @@
 import React from "react";
 import {
+  FormControl,
   IconButton,
   List,
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
   makeStyles,
+  MenuItem,
+  Select,
 } from "@material-ui/core";
 import BrushIcon from "@material-ui/icons/Brush";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -14,6 +17,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   root: {
+    display: "grid",
     width: "100%",
     maxWidth: "760px",
     backgroundColor: "inherit",
@@ -28,6 +32,7 @@ const useStyles = makeStyles(() => ({
   },
   text: {
     fontSize: "45px",
+    height: "100%"
   },
   brush: {
     marginRight: "10px",
@@ -45,7 +50,6 @@ const GroupsList: React.FC<IGroupsList> = ({
 }) => {
   const classes = useStyles();
   const todoGroups = useTypeSelector((state) => state.groupsList.todoGroups);
-
   return (
     <List className={classes.root}>
       {todoGroups.map(

@@ -7,6 +7,8 @@ import removeTodoSaga from "./removeTodoSaga";
 import loadTodosSaga from "./loadTodosSaga";
 import completeTodoSaga from "./completeTodoSaga";
 import putGroupColorSaga from "./putGroupColor";
+import loadPrioritiesSaga from "./loadPrioritiesSaga";
+import changePrioritySaga from "./putPrioritySaga";
 
 export default function* rootSaga() {
   yield all([
@@ -18,5 +20,7 @@ export default function* rootSaga() {
     loadTodosSaga(),
     completeTodoSaga(),
     putGroupColorSaga(),
+    loadPrioritiesSaga(),
+    changePrioritySaga()
   ]);
 }
