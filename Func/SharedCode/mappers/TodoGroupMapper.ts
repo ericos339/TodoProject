@@ -1,4 +1,5 @@
 import { TodoGroupModel } from "../models/TodoGroupModel";
+import { TodoItemEty } from "../mongodb/entities";
 import { TodoGroupEty } from "../mongodb/entities/TodoGroupEty";
 
 export const mapToEntity = (todoGroupModel: TodoGroupModel, todoGroupEty: TodoGroupEty): TodoGroupEty => {
@@ -13,7 +14,7 @@ export const mapToModel = (todoGroupEty: TodoGroupEty): TodoGroupModel => {
         groupName: todoGroupEty.groupName,
         color: todoGroupEty.color,
         id: todoGroupEty._id.toString(),
-        completedCount: 0,
+        completedCount: 9,
         totalCount: 0
     } 
     return model;

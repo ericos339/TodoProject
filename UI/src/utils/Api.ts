@@ -26,9 +26,9 @@ export const postTodo = (todos: ITodoModel, id: string) => {
 };
 
 export const removeTodo = (todoId: string) => {
-  return axios.delete(`${URL_API}/TodoItem/${todoId}`);
+  return axios.delete(`${URL_API}/TodoItem-Delete/?id=${todoId}`);
 };
 
 export const completeTodo = (todoId: string) => {
-  return axios.put(`${URL_API}/TodoItem/${todoId}`);
+  return axios.put(`${URL_API}/TodoItem-Put-Completed/?id=${todoId}`);
 };

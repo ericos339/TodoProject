@@ -4,6 +4,7 @@ import { TodoGroupEty } from "../mongodb/entities/TodoGroupEty";
 import { ObjectId } from "mongodb";
 
 import * as mapper from "../mappers/TodoGroupMapper";
+import { TodoItemService } from "./TodoItemService";
 
 export class TodoGroupService {
 
@@ -32,8 +33,19 @@ export class TodoGroupService {
     const aggregate: Array<TodoGroupModel> = [];
     const res = await repository.aggregate(aggregate).toArray();
     
-    return res.filter(item => item.isDeleted === false).map(item => mapper.mapToModel(item))
-  
+    return res.filter(item => item.isDeleted === false).map( item =>
+      {
+        const todoItems =  new TodoItemService();
+        
+        const model = mapper.mapToModel(item)
+        todoItems.getTodoItems(item._id).then(data => {
+          model.totalCount = data.length
+          model.completedCount = data.filter(item => item.isCompleted === true).length
+        })
+
+        return model
+      })
+    
   }
 
   public async deleteTodoGroup(id: string): Promise<void> {
