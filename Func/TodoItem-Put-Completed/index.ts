@@ -1,4 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { resolve } from "path";
 import { TodoItemService } from "../SharedCode/services/TodoItemService";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
@@ -6,12 +7,13 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const id = req.query.id;  
     try{
           const todoGroupService = new TodoItemService();
-          await todoGroupService.changeCompletedStatus(id);
+         const todoGroupRes = await todoGroupService.changeCompletedStatus(id);
           context.res = {
               headers: {
                 "Content-Type": "application/json",
               },
               status: 200,
+              body: todoGroupRes
             };
       }
       catch (error) {

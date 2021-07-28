@@ -14,7 +14,7 @@ export const mapToModel = (todoGroupEty: TodoGroupEty): TodoGroupModel => {
         groupName: todoGroupEty.groupName,
         color: todoGroupEty.color,
         id: todoGroupEty._id.toString(),
-        completedCount: 9,
+        completedCount: 0,
         totalCount: 0
     } 
     return model;

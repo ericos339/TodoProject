@@ -15,5 +15,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../build/TodoItem-Put-Competed/index.js"
+  "scriptFile": "../build/TodoItem-Put-Completed/index.js"
 }

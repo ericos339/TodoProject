@@ -32,20 +32,17 @@ export class TodoGroupService {
     const repository = connection.getMongoRepository(TodoGroupEty);
     const aggregate: Array<TodoGroupModel> = [];
     const res = await repository.aggregate(aggregate).toArray();
-    
-    return res.filter(item => item.isDeleted === false).map( item =>
-      {
-        const todoItems =  new TodoItemService();
-        
-        const model = mapper.mapToModel(item)
-        todoItems.getTodoItems(item._id).then(data => {
-          model.totalCount = data.length
-          model.completedCount = data.filter(item => item.isCompleted === true).length
-        })
+    const todoItems =  new TodoItemService();
 
-        return model
-      })
-    
+    return await Promise.all(res.filter(groups => groups.isDeleted === false).map(async group => {
+          
+          const model = mapper.mapToModel(group)
+          const todoItem = await todoItems.getTodoItems(group._id.toString())
+          model.totalCount = todoItem.length
+          model.completedCount = todoItem.filter(todo => todo.isCompleted === true).length
+          return model
+    })
+    )
   }
 
   public async deleteTodoGroup(id: string): Promise<void> {
