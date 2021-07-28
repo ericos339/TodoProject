@@ -11,4 +11,5 @@ React UI with Azure Functions on TypeScript
 5. React-router-dom
 6. Material UI
 7. Axios
-
+8. TypeOrm 
+9. ModgoDB 4.0
