@@ -16,7 +16,6 @@ function* changePriority(action: ReturnType<typeof todoActions.changePriorityTod
       action.payload.todoId,
       action.payload.priority
     );
-    console.log("gg")
     yield put(
       todoActions.changePriorityTodoSuccess({
         priority: data.priority,
