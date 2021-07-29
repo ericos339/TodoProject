@@ -1,14 +1,11 @@
 import React from "react";
 import {
-  FormControl,
   IconButton,
   List,
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
   makeStyles,
-  MenuItem,
-  Select,
 } from "@material-ui/core";
 import BrushIcon from "@material-ui/icons/Brush";
 import DeleteIcon from "@material-ui/icons/Delete";

@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     minWidth: "120px",
     marginRight: "100px"
   },
+  text: {
+    width: "100px",
+  }
 });
 
 interface ITodo {
@@ -32,8 +35,11 @@ interface ITodo {
   completed: boolean | undefined;
   groupId: string;
   priority: string;
+  deadline: string;
+  expired: boolean;
 }
-const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority }) => {
+
+const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority, deadline, expired}) => {
   const classes = useStyles();
   const priorities = useTypeSelector(store => store.groupsList.priorities)
   const [idxPriority, setIdxPriority] = useState(Object.values(PriorityEnm).indexOf(priority))
@@ -61,9 +67,12 @@ const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority 
     <ListItem key={id} role={undefined} dense button>
       <ListItemText
         primary={todoName}
-        className={completed ? classes.completed : ""}
+        className={completed ? classes.completed : classes.text}
       />
-      
+      {expired ? <ListItemText primary="Просроченно" /> : null }
+      <ListItemText 
+        primary={`${new Date(deadline).toLocaleDateString()} ${new Date(deadline).toLocaleTimeString()}`}
+      />
       <FormControl className={classes.formControl}>
         <Select
           id="select"

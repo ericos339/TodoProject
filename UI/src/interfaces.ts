@@ -16,13 +16,14 @@ export interface ITodoModel {
   id: string;
   isCompleted: boolean;
   priority: string;
-  date: string;
+  deadline: string;
+  expired: boolean;
 }
 
 export interface ITodoCreateModel {
   todoName: string;
   isCompleted: boolean;
-  date: string;
+  deadline: string;
 }
 
 export interface IGroupsState {

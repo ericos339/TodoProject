@@ -78,7 +78,7 @@ const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
   const newGroup: ITodoCreateModel = {
     todoName: inputTodo,
     isCompleted: false,
-    date,
+    deadline: date,
   };
   if(inputTodo && date){
     dispatch(addTodo({ model: newGroup, id }));
