@@ -18,4 +18,10 @@ export class TodoItemEty {
 
     @Column()
     priority: string;
+
+    @Column()
+    deadline: Date;
+
+    @Column()
+    expired: boolean;
 }

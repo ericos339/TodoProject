@@ -6,7 +6,9 @@ export const mapToEntity = (todoItemModel: TodoItemModel, todoItemEty: TodoItemE
   todoItemEty.todoName = todoItemModel.todoName,
   todoItemEty.isCompleted = false,
   todoItemEty.groupId = todoItemModel.groupId,
-  todoItemEty.priority = "Medium"
+  todoItemEty.priority = "Medium",
+  todoItemEty.deadline = new Date(todoItemModel.deadline),
+  todoItemEty.expired = todoItemModel.expired
   return todoItemEty
 }
 
@@ -16,7 +18,9 @@ export const mapToModel = ( todoItemEty: TodoItemEty): TodoItemModel => {
       isCompleted: todoItemEty.isCompleted,
       id: todoItemEty._id.toString(),
       groupId: todoItemEty.groupId,
-      priority: PriorityEnm[todoItemEty.priority]
+      priority: PriorityEnm[todoItemEty.priority],
+      deadline: todoItemEty.deadline.toJSON(),
+      expired: todoItemEty.expired
   }
  return model
 }
