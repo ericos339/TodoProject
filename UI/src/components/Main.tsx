@@ -58,7 +58,7 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     boxSizing: "border-box",
     boxShadow: "3px 2px rgba(55,55,55,.4 )"
-  }
+  },
 });
 
 interface IMain {
@@ -75,7 +75,7 @@ const Main: React.FC<IMain> = ({
   const classes = useStyles();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
-  const { todoGroups, urgentTodos } = useTypeSelector((state) => state.groupsList);
+  const { todoGroups } = useTypeSelector((state) => state.groupsList);
 
   const handleInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(evt.target.value);
@@ -122,11 +122,7 @@ const Main: React.FC<IMain> = ({
         </Button>
       </form>
       <Box className={classes.deadlineBox}>
-      {urgentTodos.length ? (
           <h2>Есть дела</h2>
-        ) : (
-          <h2 >У вас нет дел срочных дел</h2>
-        )}
       </Box>
     </Container>
   );

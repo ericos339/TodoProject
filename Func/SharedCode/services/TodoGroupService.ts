@@ -45,7 +45,7 @@ export class TodoGroupService {
     )
   }
 
-  public async deleteTodoGroup(id: string): Promise<void> {
+  public async deleteTodoGroup(id: string): Promise<TodoGroupModel> {
     
     const connection = await createMongoConnection();
     const repository = connection.getMongoRepository(TodoGroupEty);
@@ -53,6 +53,7 @@ export class TodoGroupService {
       const ety = await repository.findOne({ where: { _id: new ObjectId(id) }});
       ety.isDeleted = true;
       await repository.save(ety);
+      return mapper.mapToModel(ety)
     } catch (error) {
       console.error("TodoGroupService.deleteTodoGroup error", error);
       throw error;

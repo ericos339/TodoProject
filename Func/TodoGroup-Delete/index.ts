@@ -7,12 +7,13 @@ import { TodoGroupService } from "../SharedCode/services/TodoGroupService";
       
       try{
             const todoGroupService = new TodoGroupService();
-            await todoGroupService.deleteTodoGroup(id);
+            const todoGroup = await todoGroupService.deleteTodoGroup(id);
             context.res = {
                 headers: {
                   "Content-Type": "application/json",
                 },
                 status: 200,
+                body: todoGroup
               };
         }
         catch (error) {

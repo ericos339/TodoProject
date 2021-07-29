@@ -1,14 +1,12 @@
 import { List } from "@material-ui/core";
+import { useTypeSelector } from "../hooks/useTypeSelector";
 import { ITodoModel } from "../interfaces";
 import TodoItem from "./TodoItem";
 
-interface ITodo {
-  id: string;
-  inputSearch: string;
-  radioValue: string;
-}
 
-const DeadlineList: React.FC<ITodo> = ({ inputSearch, radioValue }) => {
+
+const DeadlineList: React.FC = () => {
+ const { urgentTodos } = useTypeSelector((state) => state.groupsList);
   // const { todoGroups } = useTypeSelector((state) => state.groupsList);
   // const todoItems = todoGroups.find((item) => item.id === id)?.todoItems;
 
@@ -22,25 +20,22 @@ const DeadlineList: React.FC<ITodo> = ({ inputSearch, radioValue }) => {
 
   return (
     <List>
-      {/* {todoItems?.length ? (
-        todoItems?.map(({ todoName, id, isCompleted, priority, deadline, expired }: ITodoModel) => {
-          if (!inputSearch && radioValue === "All") {
+      {urgentTodos?.length ? (
+        urgentTodos?.map(({ todoName, id, isCompleted, groupName }: ITodoModel) => {
             return (
-              <TodoItem
-                todoName={todoName}
-                id={id}
-                completed={isCompleted}
-                key={id}
-                groupId={id}
-                priority={priority}
-                expired={expired}
-                deadline={deadline}
-              />
+              // <TodoItem
+              //   todoName={todoName}
+              //   id={id}
+              //   completed={isCompleted}
+              //   key={id}
+              //   groupId={id}
+              // />
+              <h2>Туду</h2>
             );
-          }})
+          })
       ) : (
-         <h2>Дел пока нет</h2>
-      )} */}
+         <h2 style={{textAlign: "center"}}>Срочных дел нет</h2>
+      )}
     </List>
   );
 };

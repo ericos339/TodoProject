@@ -26,13 +26,11 @@ const useStyles = makeStyles({
   },
   formControl: {
     minWidth: "120px",
-    marginRight: "100px"
+    marginRight: "120px",
   },
   text: {
-    width: "80px",
   },
   expired: {
-    width: "20px"
   },
   date: {
     textAlign: "right",
@@ -86,7 +84,7 @@ const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
     setOpen(true);
   };
   return (
-    <ListItem key={id} role={undefined} dense button>
+    <ListItem key={id} role={undefined} dense>
       <ListItemText
         primary={todoName}
         className={completed ? classes.completed : classes.text}
