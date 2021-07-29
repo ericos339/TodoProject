@@ -6,8 +6,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const id = req.query.id;  
     const priority = req.body.priority
     try{
-          const todoItemService = new TodoItemService();
-         const todoItemRes = await todoItemService.changePriorityStatus(id, priority);
+        const todoItemService = new TodoItemService();
+        const todoItemRes = await todoItemService.changePriorityStatus(id, priority);
           context.res = {
               headers: {
                 "Content-Type": "application/json",
