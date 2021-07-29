@@ -6,4 +6,6 @@ export interface TodoItemModel {
   isCompleted: boolean;
   todoName: string;
   priority: PriorityEnm; 
+  deadline: string;
+  expired: boolean;
 }
