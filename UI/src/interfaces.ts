@@ -18,6 +18,7 @@ export interface ITodoModel {
   priority: string;
   deadline: string;
   expired: boolean;
+  groupName?: string;
 }
 
 export interface ITodoCreateModel {
@@ -30,7 +31,8 @@ export interface IGroupsState {
   todoGroups: IGroupModel[];
   isLoading?: boolean;
   error?: string;
-  priorities?: string[]
+  priorities?: string[];
+  urgentTodos: ITodoModel[];
 }
 
 export interface IModal {

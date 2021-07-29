@@ -10,6 +10,7 @@ import putGroupColorSaga from "./putGroupColor";
 import loadPrioritiesSaga from "./loadPrioritiesSaga";
 import changePrioritySaga from "./putPrioritySaga";
 import putDeadlineTodoSaga from "./putDeadlineTodoSaga";
+import loadUrgentTodosSaga from "./loadUrgentTodosSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -23,6 +24,7 @@ export default function* rootSaga() {
     putGroupColorSaga(),
     loadPrioritiesSaga(),
     changePrioritySaga(),
-    putDeadlineTodoSaga()
+    putDeadlineTodoSaga(),
+    loadUrgentTodosSaga()
   ]);
 }

@@ -75,7 +75,7 @@ const Main: React.FC<IMain> = ({
   const classes = useStyles();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
-  const { todoGroups } = useTypeSelector((state) => state.groupsList);
+  const { todoGroups, urgentTodos } = useTypeSelector((state) => state.groupsList);
 
   const handleInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(evt.target.value);
@@ -122,7 +122,11 @@ const Main: React.FC<IMain> = ({
         </Button>
       </form>
       <Box className={classes.deadlineBox}>
-
+      {urgentTodos.length ? (
+          <h2>Есть дела</h2>
+        ) : (
+          <h2 >У вас нет дел срочных дел</h2>
+        )}
       </Box>
     </Container>
   );

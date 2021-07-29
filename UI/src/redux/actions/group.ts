@@ -35,9 +35,7 @@ export const loadTodosSuccess = createAction("todoGroup/LOAD_TODOS_SUCCESS")<{
 
 export const loadUrgentTodos = createAction("todoGroup/LOAD_URGENT_TODOS")<number>();
 
-export const loadUrgentTodosSuccess = createAction("todoGroup/LOAD_URGENT_TODOS_SUCCESS")<{
-  model: ITodoModel[];
-}>();
+export const loadUrgentTodosSuccess = createAction("todoGroup/LOAD_URGENT_TODOS_SUCCESS")<ITodoModel[]>();
 
 export const addTodo = createAction("todoGroup/ADD_TODO")<{
   model: ITodoCreateModel;

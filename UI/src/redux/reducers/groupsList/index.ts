@@ -4,6 +4,7 @@ import { ActionType, getType } from "typesafe-actions";
 
 const initialState: IGroupsState = {
   todoGroups: [],
+  urgentTodos: [],
 };
 
 export const groupsList = (
@@ -53,6 +54,13 @@ export const groupsList = (
         todoGroups: newGroups,
         error: "",
       };
+
+      case getType(todoActions.loadUrgentTodosSuccess):
+        return {
+          ...state,
+          urgentTodos: action.payload,
+          error: "",
+        };
 
     case getType(todoActions.addTodoSuccess):
       newGroups = state.todoGroups.map((item) => {
