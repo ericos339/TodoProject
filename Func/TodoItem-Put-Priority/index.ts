@@ -1,13 +1,13 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { resolve } from "path";
 import { TodoItemService } from "../SharedCode/services/TodoItemService";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
     const id = req.query.id;  
+    const priority = req.body.priority
     try{
           const todoItemService = new TodoItemService();
-         const todoItemRes = await todoItemService.changeCompletedStatus(id);
+         const todoItemRes = await todoItemService.changePriorityStatus(id, priority);
           context.res = {
               headers: {
                 "Content-Type": "application/json",
@@ -23,6 +23,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             body: "Unhandled exception: " + JSON.stringify(error),
           };
       }
+
 };
 
 export default httpTrigger;

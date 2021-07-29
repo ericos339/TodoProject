@@ -32,3 +32,11 @@ export const removeTodo = (todoId: string) => {
 export const completeTodo = (todoId: string) => {
   return axios.put(`${URL_API}/TodoItem-Put-Completed/?id=${todoId}`);
 };
+
+export const getPriorities = () => {
+  return axios.get(`${URL_API}/TodoItem-Get-Priorities`)
+}
+
+export const putPriority = (todoId: string, priority: string) => {
+  return axios.put(`${URL_API}/TodoItem-Put-Priority/?id=${todoId}`, { priority });
+};

@@ -10,6 +10,7 @@ import {
   loadTodos,
   removeGroup,
   putGroupColor,
+  loadPriorities,
 } from "../redux/actions/group";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import ErrorHandler from "./errorHandler/ErrorHandler";
@@ -41,6 +42,7 @@ const App: React.FC = () => {
   const classes = useStyles();
   const { groupsList, errors } = useTypeSelector((state) => state);
   const [isOpen, setOpen] = useState({ isOpen: false, groupId: '' });
+  const [color, setColor] = useState("black")
 
   const handleOpenColorModal = (evt: React.SyntheticEvent, id: string) => {
     evt.preventDefault();
@@ -55,11 +57,12 @@ const App: React.FC = () => {
   };
   const handleCloseOnEnter = (evt: React.KeyboardEvent) => {
     if (evt.key === "Enter") {
+      dispatch(putGroupColor({ groupId: isOpen.groupId, color }))
       setOpen({ isOpen: false, groupId: "" });
     }
   };
   const handleColor = (color: string) => {
-    dispatch(putGroupColor({ groupId: isOpen.groupId, color }));
+    setColor(color)
   };
 
   const handleGroupClick = (id: string) => {
@@ -73,6 +76,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(loadGroups());
+    dispatch(loadPriorities())
   }, []);
 
   return (

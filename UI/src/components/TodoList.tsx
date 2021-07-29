@@ -28,7 +28,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
   return (
     <List>
       {todoItems?.length ? (
-        todoItems?.map(({ todoName, id, isCompleted }: ITodoModel) => {
+        todoItems?.map(({ todoName, id, isCompleted, priority }: ITodoModel) => {
           if (!inputSearch && radioValue === "All") {
             return (
               <TodoItem
@@ -37,6 +37,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
                 completed={isCompleted}
                 key={id}
                 groupId={id}
+                priority={priority}
               />
             );
           }
@@ -48,6 +49,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
                 completed={isCompleted}
                 groupId={id}
                 key={id}
+                priority={priority}
               />
             );
           }
@@ -59,6 +61,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
                 id={id}
                 completed={isCompleted}
                 key={id}
+                priority={priority}
               />
             );
           }

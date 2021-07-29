@@ -15,6 +15,7 @@ export interface ITodoModel {
   todoName: string;
   id: string;
   isCompleted: boolean;
+  priority: string;
 }
 
 export interface ITodoCreateModel {
@@ -26,6 +27,7 @@ export interface IGroupsState {
   todoGroups: IGroupModel[];
   isLoading?: boolean;
   error?: string;
+  priorities?: string[]
 }
 
 export interface IModal {
