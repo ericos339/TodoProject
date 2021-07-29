@@ -44,3 +44,7 @@ export const putPriority = (todoId: string, priority: string) => {
 export const putDeadlineTodo = (todoId: string, deadline: string) => {
   return axios.put(`${URL_API}/TodoItem-Put-Deadline/${todoId}`, { deadline })
 }
+
+export const getUrgentTodos = (count: number) => {
+  return axios.put(`${URL_API}/TodoItem-Get-UrgentTodos/${count}`)
+}

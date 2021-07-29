@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   roof: {
     display: "flex",
     flexDirection: "column",
-    width: "70%",
+    width: "80%",
   },
   input: {
     marginBottom: "15px",

@@ -10,6 +10,7 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { completeTodo, removeTodo, changePriorityTodo, changeDeadlineTodo } from "../redux/actions/group";
@@ -28,7 +29,10 @@ const useStyles = makeStyles({
     marginRight: "100px"
   },
   text: {
-    width: "100px",
+    width: "80px",
+  },
+  expired: {
+    width: "20px"
   },
   date: {
     textAlign: "right",
@@ -36,7 +40,7 @@ const useStyles = makeStyles({
   },
   content: {
     flex: "none",
-  }
+  },
 });
 
 interface ITodo {
@@ -68,9 +72,12 @@ const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
   };
   const handleDateClick = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setUpdatedDeadline(evt.target.value)
-    dispatch(changeDeadlineTodo({todoId: id, deadline: updatedDeadline}))
+   
   }
-
+  const handleUpdateTodo = () => {
+    dispatch(changeDeadlineTodo({todoId: id, deadline: updatedDeadline}))
+    dispatch(changePriorityTodo({todoId: id, priority: idxPriority.toString()}))
+  }
   const handleClose = () => {
     setOpen(false);
   };
@@ -84,10 +91,9 @@ const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
         primary={todoName}
         className={completed ? classes.completed : classes.text}
       />
-      {expired ? <ListItemText primary="Просрочено"/> : null }
+      {expired ? <ListItemText primary="Просрочено" className={classes.expired} /> : null }
       <TextField
           id="datetime-loca"
-          label="Deadline"
           type="datetime-local"
           className={classes.date}
           value={updatedDeadline}
@@ -108,7 +114,6 @@ const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
               evt.preventDefault(); 
               const value = evt.target.value as string
               setIdxPriority(+value)
-              dispatch(changePriorityTodo({todoId: id, priority: value}))
             }}
           >
             {priorities?.map((item, idx) => {
@@ -116,12 +121,15 @@ const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
             })}
           </Select>
       </FormControl>
-      <ListItemSecondaryAction>
+      <ListItemSecondaryAction> 
         <IconButton onClick={() => handleCompleteButton(id)}>
           <CheckIcon />
         </IconButton>
         <IconButton onClick={() => handleRemoveButton(id)}>
           <DeleteIcon />
+        </IconButton>
+        <IconButton onClick={() => handleUpdateTodo()}>
+          <AutorenewIcon />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>

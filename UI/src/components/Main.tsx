@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
+    position: "relative"
   },
   button: {
     backgroundColor: "#96e395",
@@ -47,6 +48,17 @@ const useStyles = makeStyles({
   error: {
     color: "red",
   },
+  deadlineBox: {
+    width: "400px",
+    height: "500px",
+    position: "absolute",
+    right: "20px",
+    bottom: "30px",
+    border: "1px solid black",
+    borderRadius: "20px",
+    boxSizing: "border-box",
+    boxShadow: "3px 2px rgba(55,55,55,.4 )"
+  }
 });
 
 interface IMain {
@@ -109,6 +121,9 @@ const Main: React.FC<IMain> = ({
           Create
         </Button>
       </form>
+      <Box className={classes.deadlineBox}>
+
+      </Box>
     </Container>
   );
 };

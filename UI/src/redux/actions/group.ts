@@ -26,12 +26,18 @@ export const removeGroupSuccess = createAction(
   "todoGroup/REMOVE_GROUP_SUCCESS"
 )<string>();
 
+export const loadTodos = createAction("todoGroup/LOAD_TODOS")<string>();
+
 export const loadTodosSuccess = createAction("todoGroup/LOAD_TODOS_SUCCESS")<{
   model: ITodoModel[];
   id: string;
 }>();
 
-export const loadTodos = createAction("todoGroup/LOAD_TODOS")<string>();
+export const loadUrgentTodos = createAction("todoGroup/LOAD_URGENT_TODOS")<number>();
+
+export const loadUrgentTodosSuccess = createAction("todoGroup/LOAD_URGENT_TODOS_SUCCESS")<{
+  model: ITodoModel[];
+}>();
 
 export const addTodo = createAction("todoGroup/ADD_TODO")<{
   model: ITodoCreateModel;
