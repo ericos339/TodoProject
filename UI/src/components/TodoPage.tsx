@@ -7,6 +7,7 @@ import {
   OutlinedInput,
   Radio,
   RadioGroup,
+  TextField,
 } from "@material-ui/core";
 import { Link, useRouteMatch } from "react-router-dom";
 import { addTodo } from "../redux/actions/group";
@@ -24,13 +25,23 @@ const useStyles = makeStyles({
     marginBottom: "15px",
     backgroundColor: "#fff",
     height: "40px",
-    width: "80%",
+    width: "60%",
+    marginRight: "20px"
   },
   link: {
     textDecoration: "none",
     color: "#000",
     fontSize: "24px",
     paddingBottom: "40px",
+  },
+  textField: {
+    width: "200px",
+    marginBottom: "20px"
+  },
+  container: {
+    marginTop: "50px",
+    display: 'flex',
+    alignItems: "center"
   },
 });
 
@@ -41,7 +52,7 @@ const TodoPage: React.FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
   const [inputTodo, setInputTodo] = useState<string>("");
   const [radioValue, setRadioValue] = React.useState("All");
-
+  const [date, setDate] = useState('');
   const dispatch = useDispatch();
   const { id }: { id?: string } = match!.params;
   if (!id) {
@@ -54,22 +65,26 @@ const TodoPage: React.FC = () => {
   const handleTodoInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputTodo(evt.target.value);
   };
+  const handleDateInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(evt.target.value)
+  }
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setRadioValue(evt.target.value);
   };
 
-  const onEnter = (evt: React.KeyboardEvent) => {
-    if (evt.key === "Enter" && inputTodo) {
-      const newGroup: ITodoCreateModel = {
-        todoName: inputTodo,
-        isCompleted: false,
-      };
-
-      dispatch(addTodo({ model: newGroup, id }));
-      setInputTodo("");
-    }
+const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+  evt.preventDefault()
+  const newGroup: ITodoCreateModel = {
+    todoName: inputTodo,
+    isCompleted: false,
+    date,
   };
+  if(inputTodo && date){
+    dispatch(addTodo({ model: newGroup, id }));
+    setInputTodo("")
+  }
+}
 
   return (
     <Container className={classes.roof}>
@@ -94,14 +109,28 @@ const TodoPage: React.FC = () => {
         </RadioGroup>
       </FormControl>
       <TodoList id={id} inputSearch={inputSearch} radioValue={radioValue} />
-      <OutlinedInput
-        value={inputTodo}
-        onChange={handleTodoInput}
-        className={classes.input}
-        placeholder="Добавить"
-        onKeyDown={onEnter}
-        required={true}
-      />
+      <form className={classes.container} noValidate onSubmit={onSubmit}>
+        <OutlinedInput
+          value={inputTodo}
+          onChange={handleTodoInput}
+          className={classes.input}
+          placeholder="Добавить"
+          required
+        />
+        <TextField
+          id="datetime-local"
+          label="Next appointment"
+          type="datetime-local"
+          defaultValue="2017-05-24T10:30"
+          className={classes.textField}
+          value={date}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleDateInput}
+          required
+        />
+      </form>.
     </Container>
   );
 };

@@ -16,11 +16,13 @@ export interface ITodoModel {
   id: string;
   isCompleted: boolean;
   priority: string;
+  date: string;
 }
 
 export interface ITodoCreateModel {
   todoName: string;
   isCompleted: boolean;
+  date: string;
 }
 
 export interface IGroupsState {
