@@ -59,6 +59,21 @@ export class TodoItemService {
     }
   }
 
+  public async changeDeadline(id: string,newDeadline: Date): Promise<TodoItemModel> {
+    
+    const connection = await createMongoConnection();
+    const repository = connection.getMongoRepository(TodoItemEty);
+    try {
+      const ety = await repository.findOne({ where: { _id: new ObjectId(id) }});
+      ety.deadline = newDeadline;
+      await repository.save(ety);
+      return mapper.mapToModel(ety);
+    } catch (error) {
+      console.error("TodoGroupService.ChangeColorTodoGroup error", error);
+      throw error;
+    }
+  }
+
   public getPriorities() {
     return Object.values(PriorityEnm)
       .filter(item => typeof item !== 'number')
