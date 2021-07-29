@@ -83,6 +83,7 @@ const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
   if(inputTodo && date){
     dispatch(addTodo({ model: newGroup, id }));
     setInputTodo("")
+    setDate('')
   }
 }
 
@@ -119,9 +120,9 @@ const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         />
         <TextField
           id="datetime-local"
-          label="Next appointment"
+          label="Deadline"
           type="datetime-local"
-          defaultValue="2017-05-24T10:30"
+          defaultValue={Date.now()}
           className={classes.textField}
           value={date}
           InputLabelProps={{

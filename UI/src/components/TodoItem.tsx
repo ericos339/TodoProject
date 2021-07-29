@@ -19,6 +19,7 @@ import { PriorityEnm } from "../enums/priorityEnum";
 const useStyles = makeStyles({
   completed: {
     textDecoration: "line-through",
+    width: "100px",
   },
   formControl: {
     minWidth: "120px",
