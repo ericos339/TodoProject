@@ -8,13 +8,15 @@ import {
   makeStyles,
   MenuItem,
   Select,
+  TextField,
 } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { completeTodo, removeTodo, changePriorityTodo } from "../redux/actions/group";
+import { completeTodo, removeTodo, changePriorityTodo, changeDeadlineTodo } from "../redux/actions/group";
 import { useDispatch } from "react-redux";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { PriorityEnm } from "../enums/priorityEnum";
+import dateFormat from "dateformat";
 
 const useStyles = makeStyles({
   completed: {
@@ -27,6 +29,13 @@ const useStyles = makeStyles({
   },
   text: {
     width: "100px",
+  },
+  date: {
+    textAlign: "right",
+    marginRight: '25px'
+  },
+  content: {
+    flex: "none",
   }
 });
 
@@ -41,9 +50,13 @@ interface ITodo {
 }
 
 const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority, deadline, expired}) => {
+const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
+
   const classes = useStyles();
   const priorities = useTypeSelector(store => store.groupsList.priorities)
   const [idxPriority, setIdxPriority] = useState(Object.values(PriorityEnm).indexOf(priority))
+  const [updatedDeadline, setUpdatedDeadline] = useState(dateFormated)
+  const [open, setOpen] = React.useState(false);
 
   const dispatch = useDispatch();
   const handleRemoveButton = (todoId: string) => {
@@ -53,8 +66,10 @@ const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority,
   const handleCompleteButton = (todoId: string) => {
     dispatch(completeTodo(todoId));
   };
-
-  const [open, setOpen] = React.useState(false);
+  const handleDateClick = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdatedDeadline(evt.target.value)
+    dispatch(changeDeadlineTodo({todoId: id, deadline: updatedDeadline}))
+  }
 
   const handleClose = () => {
     setOpen(false);
@@ -63,35 +78,43 @@ const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority,
   const handleOpen = () => {
     setOpen(true);
   };
-
   return (
     <ListItem key={id} role={undefined} dense button>
       <ListItemText
         primary={todoName}
         className={completed ? classes.completed : classes.text}
       />
-      {expired ? <ListItemText primary="Просроченно" /> : null }
-      <ListItemText 
-        primary={`${new Date(deadline).toLocaleDateString()} ${new Date(deadline).toLocaleTimeString()}`}
-      />
-      <FormControl className={classes.formControl}>
-        <Select
-          id="select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={idxPriority}
-          onChange={evt => {
-            evt.preventDefault(); 
-            const value = evt.target.value as string
-            setIdxPriority(+value)
-            dispatch(changePriorityTodo({todoId: id, priority: value}))
+      {expired ? <ListItemText primary="Просрочено"/> : null }
+      <TextField
+          id="datetime-loca"
+          label="Deadline"
+          type="datetime-local"
+          className={classes.date}
+          value={updatedDeadline}
+          InputLabelProps={{
+            shrink: true,
           }}
-        >
-          {priorities?.map((item, idx) => {
-            return <MenuItem key={idx} value={idx}>{item}</MenuItem>
-          })}
-        </Select>
+          onChange={handleDateClick}
+          required
+        />
+      <FormControl className={classes.formControl}>
+          <Select
+            id="select"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={idxPriority}
+            onChange={evt => {
+              evt.preventDefault(); 
+              const value = evt.target.value as string
+              setIdxPriority(+value)
+              dispatch(changePriorityTodo({todoId: id, priority: value}))
+            }}
+          >
+            {priorities?.map((item, idx) => {
+              return <MenuItem key={idx} value={idx}>{item}</MenuItem>
+            })}
+          </Select>
       </FormControl>
       <ListItemSecondaryAction>
         <IconButton onClick={() => handleCompleteButton(id)}>

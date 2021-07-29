@@ -8,7 +8,7 @@ export const mapToEntity = (todoItemModel: TodoItemModel, todoItemEty: TodoItemE
   todoItemEty.groupId = todoItemModel.groupId,
   todoItemEty.priority = "Medium",
   todoItemEty.deadline = new Date(todoItemModel.deadline),
-  todoItemEty.expired = todoItemModel.expired
+  todoItemEty.expired = false
   return todoItemEty
 }
 

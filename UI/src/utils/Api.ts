@@ -40,3 +40,7 @@ export const getPriorities = () => {
 export const putPriority = (todoId: string, priority: string) => {
   return axios.put(`${URL_API}/TodoItem-Put-Priority/?id=${todoId}`, { priority });
 };
+
+export const putDeadlineTodo = (todoId: string, deadline: string) => {
+  return axios.put(`${URL_API}/TodoItem-Put-Deadline/${todoId}`, { deadline })
+}

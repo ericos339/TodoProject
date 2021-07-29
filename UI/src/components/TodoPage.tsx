@@ -35,8 +35,8 @@ const useStyles = makeStyles({
     paddingBottom: "40px",
   },
   textField: {
-    width: "200px",
-    marginBottom: "20px"
+    width: "230px",
+    marginBottom: "20px",
   },
   container: {
     marginTop: "50px",
@@ -86,7 +86,7 @@ const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     setDate('')
   }
 }
-
+console.log(date)
   return (
     <Container className={classes.roof}>
       <Link className={classes.link} to="/">
@@ -122,7 +122,6 @@ const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
           id="datetime-local"
           label="Deadline"
           type="datetime-local"
-          defaultValue={Date.now()}
           className={classes.textField}
           value={date}
           InputLabelProps={{

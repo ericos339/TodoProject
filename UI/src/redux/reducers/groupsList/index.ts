@@ -108,6 +108,17 @@ export const groupsList = (
       });
       return { ...state, todoGroups: newGroups, error: "" };
 
+      case getType(todoActions.changeDeadlineTodoSuccess):
+      newGroups = [...state.todoGroups].map((item) => {
+        item.todoItems?.forEach((todo: ITodoModel) => {
+          if (todo.id === action.payload.todoId) {
+            todo.deadline = action.payload.deadline;
+          }
+        });
+        return item;
+      });
+      return { ...state, todoGroups: newGroups, error: "" };
+
       case getType(todoActions.loadPrioritiesSuccess):
         return {
           ...state,

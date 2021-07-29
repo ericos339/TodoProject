@@ -89,6 +89,16 @@ export const changePriorityTodoSuccess = createAction(
   priority: string;
 }>();
 
+export const changeDeadlineTodo = createAction('todoGroup/CHANGE_DEADLINE_TODO')<{
+  todoId: string,
+  deadline: string
+}>();
+
+export const changeDeadlineTodoSuccess = createAction('todoGroup/CHANGE_DEADLINE_TODO_SUCCESS')<{
+  todoId: string,
+  deadline: string
+}>();
+
 export const spinnerStart = createAction("spinner/SPINNER_START")();
 
 export const spinnerStop = createAction("spinner/SPINNER_STOP")();
