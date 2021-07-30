@@ -19,6 +19,7 @@ export interface ITodoModel {
   deadline: string;
   expired: boolean;
   groupName?: string;
+  groupId: string;
 }
 
 export interface ITodoCreateModel {

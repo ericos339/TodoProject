@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
-import { List } from "@material-ui/core";
+import { List, makeStyles } from "@material-ui/core";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { ITodoModel } from "../interfaces";
 
 import TodoItem from "./TodoItem";
 import { loadTodos } from "../redux/actions/group";
 import { useDispatch } from "react-redux";
+
+
+
+const useStyles = makeStyles({
+  roof: {
+    width: "80%",
+  },
+});
 
 interface ITodo {
   id: string;
@@ -14,6 +22,7 @@ interface ITodo {
 }
 
 const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
+  const classes = useStyles()
   const { todoGroups } = useTypeSelector((state) => state.groupsList);
   const todoItems = todoGroups.find((item) => item.id === id)?.todoItems;
 
@@ -26,9 +35,9 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
   }, [todoGroups]);
 
   return (
-    <List>
+    <List className={classes.roof}>
       {todoItems?.length ? (
-        todoItems?.map(({ todoName, id, isCompleted, priority, deadline, expired }: ITodoModel) => {
+        todoItems?.map(({ todoName, id, isCompleted, priority, deadline, expired, groupId }: ITodoModel) => {
           if (!inputSearch && radioValue === "All") {
             return (
               <TodoItem
@@ -36,7 +45,7 @@ const TodoList: React.FC<ITodo> = ({ id, inputSearch, radioValue }) => {
                 id={id}
                 completed={isCompleted}
                 key={id}
-                groupId={id}
+                groupId={groupId}
                 priority={priority}
                 expired={expired}
                 deadline={deadline}

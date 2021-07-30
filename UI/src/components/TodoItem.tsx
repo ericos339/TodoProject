@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { PriorityEnm } from "../enums/priorityEnum";
 import dateFormat from "dateformat";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   completed: {
@@ -27,18 +28,27 @@ const useStyles = makeStyles({
   formControl: {
     minWidth: "120px",
     marginRight: "120px",
+    marginLeft: "auto"
   },
   text: {
+    width: "70px"
   },
   expired: {
   },
   date: {
     textAlign: "right",
-    marginRight: '25px'
+    marginRight: '25px',
+    width: "220px",
+    marginLeft: "auto"
   },
   content: {
     flex: "none",
   },
+  link: {
+    width: "200px",
+    textDecoration: "none",
+    color: "#000",
+  }
 });
 
 interface ITodo {
@@ -49,9 +59,10 @@ interface ITodo {
   priority: string;
   deadline: string;
   expired: boolean;
+  isUrgent?: boolean;
 }
 
-const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority, deadline, expired}) => {
+const TodoItem: React.FC<ITodo> = ({ todoName, id, completed, groupId, priority, deadline, expired, isUrgent = false }) => {
 const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
 
   const classes = useStyles();
@@ -85,11 +96,19 @@ const dateFormated = dateFormat(new Date(deadline),"yyyy-mm-dd'T'HH:MM")
   };
   return (
     <ListItem key={id} role={undefined} dense>
-      <ListItemText
-        primary={todoName}
-        className={completed ? classes.completed : classes.text}
-      />
-      {expired ? <ListItemText primary="Просрочено" className={classes.expired} /> : null }
+      {
+      isUrgent ? 
+      <Link to={`/group/${groupId}`} className={classes.link}>
+        <ListItemText
+          primary={todoName}
+        />
+      </Link>
+      : <ListItemText
+      primary={todoName}
+      className={completed ? classes.completed : classes.text}
+    />
+    }
+      {expired && !isUrgent ? <ListItemText primary="Просрочено" className={classes.expired} /> : null }
       <TextField
           id="datetime-loca"
           type="datetime-local"

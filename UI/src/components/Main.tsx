@@ -11,24 +11,26 @@ import GroupsList from "./GroupsList";
 import { useDispatch } from "react-redux";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { addGroup } from "../redux/actions/group";
+import DeadlineList from "./DeadlineList";
 
 const useStyles = makeStyles({
   roof: {
     display: "flex",
     justifyContent: "space-between",
     height: "100%",
-    padding: "0 150px",
+    padding: "0 50px",
     position: "relative"
   },
   button: {
     backgroundColor: "#96e395",
     height: "40px",
-    maxWidth: "100%",
+    width: "200px",
   },
   form: {
     display: "flex",
     flexDirection: "column",
-    width: "200px",
+    alignItems: "center",
+    width: "100%",
   },
   input: {
     marginBottom: "15px",
@@ -48,13 +50,17 @@ const useStyles = makeStyles({
     color: "red",
   },
   deadlineBox: {
-    width: "400px",
+    width: "800px",
     height: "500px",
     border: "1px solid black",
     borderRadius: "20px",
     boxSizing: "border-box",
     boxShadow: "3px 2px rgba(55,55,55,.4 )"
   },
+  text: {
+    fontSize: "32px",
+    textAlign: "center"
+  }
 });
 
 interface IMain {
@@ -89,7 +95,7 @@ const Main: React.FC<IMain> = ({
   return (
     <Container className={classes.roof}>
       <Box className={classes.box}>
-        <h1>ToDo groups</h1>
+        <h1 className={classes.text}>ToDo groups</h1>
         {todoGroups.length ? (
           <GroupsList
             handleGroupClick={handleGroupClick}
@@ -119,7 +125,8 @@ const Main: React.FC<IMain> = ({
       </Box>
      
       <Box className={classes.deadlineBox}>
-          <h2>Есть дела</h2>
+        <h2 className={classes.text}>Список срочных дел</h2>
+          <DeadlineList />
       </Box>
     </Container>
   );
