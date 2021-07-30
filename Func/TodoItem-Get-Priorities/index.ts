@@ -3,8 +3,8 @@ import { TodoItemService } from "../SharedCode/services/TodoItemService";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     try{
-        const productService = new TodoItemService();
-        const groups = await productService.getPriorities()
+        const todoItemService = new TodoItemService();
+        const groups = await todoItemService.getPriorities()
         context.res = {
             headers: {
                 "Content-Type": "application/json",

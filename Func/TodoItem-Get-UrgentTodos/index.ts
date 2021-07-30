@@ -2,11 +2,11 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { TodoItemService } from "../SharedCode/services/TodoItemService";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
+    context.log('Getting urgent todos...');
     try{
+        const groupId = req.params.count
         const todoItemService = new TodoItemService();
-        const groupId = req.query.id
-        const items = await todoItemService.getTodoItems(groupId)
+        const items = await todoItemService.getUrgentTodoItems(5)
         context.res = {
             headers: {
               "Content-Type": "application/json",

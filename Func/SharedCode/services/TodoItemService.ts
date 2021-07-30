@@ -33,6 +33,26 @@ export class TodoItemService {
     return res.filter(item => item.groupId === groupId).map(item => mapper.mapToModel(item))
   }
 
+  public async getUrgentTodoItems(count: number): Promise<TodoItemModel[]> {
+    
+    const connection = await createMongoConnection();
+    const repository = connection.getMongoRepository(TodoItemEty);
+    const res = await repository.aggregate([
+      {
+        $match: {
+          isCompleted: false,
+        },
+      },
+      {
+        $sort: {
+          deadline: 1,
+        },
+      },
+      { $limit: count }
+    ]).toArray();
+    return res.map(item => mapper.mapToModel(item));
+  }
+
   public async deleteTodoItem(id: string): Promise<void> {
     const connection = await createMongoConnection();
     const repository = connection.getMongoRepository(TodoItemEty);
