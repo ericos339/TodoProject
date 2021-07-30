@@ -21,16 +21,18 @@ const DeadlineList: React.FC = () => {
   return (
     <List>
       {urgentTodos?.length ? (
-        urgentTodos?.map(({ todoName, id, isCompleted, groupName }: ITodoModel) => {
+        urgentTodos?.map(({ todoName, id, isCompleted, priority, expired, deadline }: ITodoModel) => {
             return (
-              // <TodoItem
-              //   todoName={todoName}
-              //   id={id}
-              //   completed={isCompleted}
-              //   key={id}
-              //   groupId={id}
-              // />
-              <h2>Туду</h2>
+              <TodoItem
+                todoName={todoName}
+                id={id}
+                completed={isCompleted}
+                key={id}
+                groupId={id}
+                priority={priority}
+                expired={expired}
+                deadline={deadline}
+              />
             );
           })
       ) : (

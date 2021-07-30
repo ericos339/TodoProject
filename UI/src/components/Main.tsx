@@ -15,10 +15,9 @@ import { addGroup } from "../redux/actions/group";
 const useStyles = makeStyles({
   roof: {
     display: "flex",
-    flexDirection: "column",
     justifyContent: "space-between",
-    alignItems: "center",
     height: "100%",
+    padding: "0 150px",
     position: "relative"
   },
   button: {
@@ -51,9 +50,6 @@ const useStyles = makeStyles({
   deadlineBox: {
     width: "400px",
     height: "500px",
-    position: "absolute",
-    right: "20px",
-    bottom: "30px",
     border: "1px solid black",
     borderRadius: "20px",
     boxSizing: "border-box",
@@ -103,24 +99,25 @@ const Main: React.FC<IMain> = ({
         ) : (
           <h2 className={classes.subtitle}>У вас нет дел</h2>
         )}
+         <form className={classes.form} onSubmit={handleAddGroupSubmit}>
+          <OutlinedInput
+            id="component-outlined"
+            value={inputValue}
+            onChange={handleInput}
+            className={classes.input}
+            required={true}
+          />
+          <Button
+            className={classes.button}
+            variant="outlined"
+            size="small"
+            type="submit"
+          >
+            Create
+          </Button>
+        </form>
       </Box>
-      <form className={classes.form} onSubmit={handleAddGroupSubmit}>
-        <OutlinedInput
-          id="component-outlined"
-          value={inputValue}
-          onChange={handleInput}
-          className={classes.input}
-          required={true}
-        />
-        <Button
-          className={classes.button}
-          variant="outlined"
-          size="small"
-          type="submit"
-        >
-          Create
-        </Button>
-      </form>
+     
       <Box className={classes.deadlineBox}>
           <h2>Есть дела</h2>
       </Box>
