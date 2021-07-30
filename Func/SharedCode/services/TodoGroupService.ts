@@ -5,6 +5,7 @@ import { ObjectId } from "mongodb";
 
 import * as mapper from "../mappers/TodoGroupMapper";
 import { TodoItemService } from "./TodoItemService";
+import { GroupEty } from "../mongodb/entities/GroupEty";
 
 export class TodoGroupService {
 
