@@ -23,4 +23,5 @@ import { TodoGroupService } from "../SharedCode/services/TodoGroupService";
             };
         }
     };
+
 export default httpTrigger;

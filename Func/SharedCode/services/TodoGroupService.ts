@@ -27,6 +27,7 @@ export class TodoGroupService {
   }
 
   public async getTodoGroups(): Promise<TodoGroupModel[]> {
+
     
     const connection = await createMongoConnection();
     const repository = connection.getMongoRepository(TodoGroupEty);
@@ -58,6 +59,17 @@ export class TodoGroupService {
       console.error("TodoGroupService.deleteTodoGroup error", error);
       throw error;
     }
+  }
+  public async getTodoGroup(): Promise<any> {
+    const ety = new GroupEty();
+    
+  
+    const connection = await createMongoConnection();
+    const repository = connection.getMongoRepository(GroupEty);
+    let aggregate: Array<any> = [];
+    const res = await repository.aggregate(aggregate).toArray();
+  
+    return res;
   }
 
   public async changeColorTodoGroup(id: string, color: string): Promise<TodoGroupModel> {
